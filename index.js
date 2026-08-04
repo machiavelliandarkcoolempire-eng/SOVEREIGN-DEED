@@ -7,15 +7,12 @@ window.InitSovereignIrys = async function(rawProvider) {
     try {
         const provider = new ethers.BrowserProvider(rawProvider);
         
-        // 🎯 ดึง Dedicated RPC (Alchemy Key 2)
-        const dedicatedIrisRpc = "https://base-mainnet.g.alchemy.com/v2/wR5UgtUrkfPjKnqfMhm8k";
-
+        // ใช้ Modular SDK เชื่อมต่อกับ Base Mainnet
+        // Irys ใช้คำว่า "ethereum" เป็นชื่อ Token สำหรับจ่ายค่าแก๊สบน L2 (Base)
         const irysUploader = await WebUploader(WebEthereum)
             .withAdapter(EthersV6Adapter(provider))
-            .withRpc(dedicatedIrisRpc)
-            .withNetwork("mainnet") // ระบุ Irys Network ที่ต้องการเชื่อมต่อ (mainnet/devnet)
-            .withToken("base-eth")  // เปลี่ยนเป็น base-eth เพื่อให้สอดคล้องกับ Base Network
-            .build();               // ✅ เพิ่ม .build() เพื่อสร้าง Uploader Instance
+            .withRpc("https://mainnet.base.org") // บังคับชี้ไปที่ Base
+            .withToken("ethereum"); 
             
         return irysUploader;
     } catch (error) {

@@ -14,8 +14,11 @@
         }
     </script>
     
+    <!-- ✅ แก้ไข connect-src: อนุญาตโดเมน *.irys.xyz ทั้งหมดเพื่อป้องกัน CORS/Network Error -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; media-src 'self' blob: https:; connect-src 'self' https://mainnet.base.org https://base.llamarpc.com https://base-rpc.publicnode.com https://base-mainnet.g.alchemy.com wss://base-mainnet.g.alchemy.com https://*.irys.xyz wss://relay.walletconnect.com wss://relay.walletconnect.org https://rpc.walletconnect.com https://api.web3modal.com https://api.reown.com wss:; frame-ancestors 'none'; base-uri 'none'; object-src 'none'; form-action 'self';">
 
+
+    <!-- 🌟 1. โหลด CSS ที่ Vercel บิ้วให้ -->
     <link rel="stylesheet" href="./dist.css" />
 
     <style>
@@ -23,23 +26,60 @@
         body { visibility: hidden; }
         body.app-ready { visibility: visible; }
         
+        /* SEC Compliance Override via CSS (Zero JS Modification) */
         #displayCouncilPool span {
             font-size: 0 !important;
         }
         #displayCouncilPool span::after {
             content: "ETH (Ecosystem Vault Allocation)";
-            font-size: 0.75rem; 
+            font-size: 0.75rem; /* text-xs */
             letter-spacing: normal;
         }
     </style>
     
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.4/ethers.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- 📦 ETHERS V6 & WALLETCONNECT & HLS -->
     <script src="https://unpkg.com/@walletconnect/ethereum-provider@2.11.1/dist/index.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
+    <!-- 🌟 2. โหลด Polyfill -->
     <script src="./web3-polyfill.js"></script>
+
+    <!-- 🌟 3. โหลด Irys SDK -->
     <script src="./irys-bundle.js"></script>
 
+</head>
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=JetBrains+Mono:wght@400;700;800&display=swap');
+
+        html, body { background-color: #000000 !important; }
+        body { visibility: hidden; }
+        body.app-ready { visibility: visible; }
+
+        /* SEC Compliance Override via CSS (Zero JS Modification) */
+        #displayCouncilPool span {
+            font-size: 0 !important;
+        }
+        #displayCouncilPool span::after {
+            content: "ETH (Ecosystem Vault Allocation)";
+            font-size: 0.75rem; /* text-xs */
+            letter-spacing: normal;
+        }
+    </style>
+
+    <!-- 📦 ETHERS V6 & WALLETCONNECT & HLS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.4/ethers.umd.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/@walletconnect/ethereum-provider@2.11.1/dist/index.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+    <!-- 🌟 2. โหลด Polyfill -->
+    <script src="./web3-polyfill.js"></script>
+
+    <!-- 🌟 3. โหลด Irys SDK -->
+    <script src="./irys-bundle.js"></script>
+</head>
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=JetBrains+Mono:wght@400;700;800&display=swap');
 
