@@ -1,0 +1,21 @@
+{
+  "name": "sovereign-council-irys-bundle",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "tailwindcss -i ./global.css -o ./dist.css --minify && esbuild ./index.js --bundle --outfile=./irys-bundle.js --minify --format=iife --alias:stream=stream-browserify --alias:crypto=crypto-browserify --alias:events=events"
+  },
+  "dependencies": {
+    "@irys/web-upload": "^0.0.4",
+    "@irys/web-upload-ethereum": "^0.0.4",
+    "@irys/web-upload-ethereum-ethers-v6": "^0.0.4",
+    "ethers": "^6.13.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0",
+    "esbuild": "^0.20.0",
+    "stream-browserify": "^3.0.0",
+    "crypto-browserify": "^3.12.0",
+    "events": "^3.3.0"
+  }
+}
